@@ -1,15 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
+/* eslint-disable react-native/no-color-literals */
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Title from './src/components/Title'
-import AddToDo from './src/components/AddToDo'
+import { Provider as PaperProvider } from 'react-native-paper';
+import { StyleSheet, View } from 'react-native';
+import Title from './src/components/Title';
+import ToDos from './src/components/ToDos.jsx';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Title></Title>
-      <AddToDo/>
-    </View>
+    <PaperProvider>
+      <View style={styles.container}>
+        <Title />
+        <ToDos />
+      </View>
+    </PaperProvider>
   );
 }
 
@@ -17,6 +20,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    margin: 30
-  }
+    margin: 30,
+  },
 });

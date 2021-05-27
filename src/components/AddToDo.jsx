@@ -1,26 +1,55 @@
 import React, { useState } from 'react';
-import { Text, TextInput, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import { Button, TextInput } from 'react-native-paper';
 
-const AddToDo = () => {
+const AddToDo = ({ onToDoSubmit }) => {
   const [toDo, setToDo] = useState('');
 
-  return(
-    <TextInput
-      style={styles.input}
-      placeholder="add new to do"
-      onChangeText={setToDo}
-      value={toDo}
-    />
+  const handleSubmit = () => {
+    onToDoSubmit(toDo);
+    setToDo('');
+  };
+
+  return (
+    <View style={styles.container}>
+      <TextInput
+        style={styles.input}
+        mode="outlined"
+        label="add new task"
+        placeholder="clean the dishes"
+        onChangeText={setToDo}
+        value={toDo}
+        onSubmitEditing={handleSubmit}
+      />
+
+      <Button
+        mode="contained"
+        style={styles.button}
+        accessibilityLabel="Add a new to do"
+        onPress={handleSubmit}
+      >
+        Add
+      </Button>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  input: {
-    padding: 10,
+  container: {
+    flexDirection: 'row',
     fontSize: 20,
     fontWeight: 'bold',
-    margin: 10,
-    borderWidth: 2,
+    marginTop: 30,
+    marginBottom: 30,
+  },
+  input: {
+    flex: 1,
+    // paddingLeft: 10,
+    marginRight: 10,
+  },
+  button: {
+    height: 50,
+    marginTop: 10,
   },
 });
 
